@@ -24,6 +24,16 @@ const SEED_STUDENTS = [
   { StudentId: 'S008', EnrolmentDate: '2024-02-12', FullName: 'Lucas Kim',       DOB: '2006-02-08', IsActive: true },
   { StudentId: 'S009', EnrolmentDate: '2024-07-15', FullName: 'Grace Robinson',  DOB: '2005-09-19', IsActive: false },
   { StudentId: 'S010', EnrolmentDate: '2024-07-15', FullName: 'Jack Wilson',     DOB: '2006-04-02', IsActive: true },
+  { StudentId: 'S011', EnrolmentDate: '2022-02-14', FullName: 'Chloe Anderson',  DOB: '2003-10-05', IsActive: true },
+  { StudentId: 'S012', EnrolmentDate: '2022-07-18', FullName: 'Oliver Hughes',   DOB: '2002-07-22', IsActive: false },
+  { StudentId: 'S013', EnrolmentDate: '2023-02-13', FullName: 'Zoe Mitchell',    DOB: '2004-04-16', IsActive: true },
+  { StudentId: 'S014', EnrolmentDate: '2023-02-13', FullName: 'Henry Clarke',    DOB: '2003-12-11', IsActive: true },
+  { StudentId: 'S015', EnrolmentDate: '2023-07-17', FullName: 'Ruby Singh',      DOB: '2005-01-30', IsActive: false },
+  { StudentId: 'S016', EnrolmentDate: '2023-07-17', FullName: 'Leo Martinez',    DOB: '2004-08-25', IsActive: true },
+  { StudentId: 'S017', EnrolmentDate: '2024-02-12', FullName: 'Sophie Turner',   DOB: '2006-05-07', IsActive: true },
+  { StudentId: 'S018', EnrolmentDate: '2024-02-12', FullName: 'Max Fraser',      DOB: '2005-11-18', IsActive: true },
+  { StudentId: 'S019', EnrolmentDate: '2024-07-15', FullName: 'Ella Dawson',     DOB: '2006-09-03', IsActive: false },
+  { StudentId: 'S020', EnrolmentDate: '2024-07-15', FullName: 'Sam Lee',         DOB: '2006-01-26', IsActive: true },
 ];
 
 async function ensureTable(client: DynamoDBClient) {
