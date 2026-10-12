@@ -10,6 +10,6 @@ export async function updateStudentActive(studentId: string, enrolmentDate: stri
 
   await setStudentActive(studentId, enrolmentDate, isActive);
 
-  revalidatePath('/users');
+  // revalidatePath('/users');
   revalidatePath(`/users/${studentId}`);
 }
