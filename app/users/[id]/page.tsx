@@ -1,10 +1,7 @@
 import { notFound } from 'next/navigation';
 import UserDetails from '../../components/UserDetails';
-
-interface User {
-  id:number;
-  name:string;
-}
+import { getStudent } from '../../lib/students';
+import { updateStudentActive } from '../actions';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -12,13 +9,21 @@ interface Props {
 
 const UserPage = async({ params }: Props) => {
   const { id } = await params;
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${encodeURIComponent(id)}`,
-    {cache:'no-store'}
-  );
-  if (!res.ok) notFound();
-  const user: User = await res.json();
+  const student = await getStudent(id);
+  if (!student) notFound();
 
-  return <UserDetails id={user.id} name={user.name} backHref="/users" backLabel="Back to users" />
+  return (
+    <UserDetails
+      id={student.StudentId}
+      name={student.FullName}
+      dob={student.DOB}
+      enrolmentDate={student.EnrolmentDate}
+      isActive={student.IsActive}
+      onActiveChange={updateStudentActive.bind(null, student.StudentId, student.EnrolmentDate)}
+      backHref="/users"
+      backLabel="Back to users"
+    />
+  )
 }
 
 export default UserPage

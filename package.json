@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1149.0",
+    "@aws-sdk/lib-dynamodb": "^3.1149.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
@@ -19,6 +22,7 @@
     "postcss": "8.5.29",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
   }
