@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { formatDate } from '../lib/formatDate';
 import ActiveCheckbox from './ActiveCheckbox';
 import ProfileIcon from './ProfileIcon';
+import styles from './users.module.css';
 
 interface Props {
   id: string;
@@ -17,7 +18,7 @@ interface Props {
 
 const UserDetails = ({ id, name, dob, enrolmentDate, isActive, onActiveChange, backHref, backLabel = 'Back' }: Props) => {
   return (
-    <div className="flex flex-col items-start gap-4">
+    <div className={`${styles.card} flex flex-col items-start gap-4`}>
       <ProfileIcon isActive={isActive} />
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
         <dt className="font-bold">ID</dt>
@@ -35,7 +36,7 @@ const UserDetails = ({ id, name, dob, enrolmentDate, isActive, onActiveChange, b
             : isActive ? 'Active' : 'Inactive'}
         </dd>
       </dl>
-      <Link href={backHref} className="rounded border px-4 py-2">
+      <Link href={backHref} className="btn btn-primary">
         &larr; {backLabel}
       </Link>
     </div>

@@ -18,7 +18,7 @@ const UsersError = ({ error, reset }: Props) => {
 
   return (
     <div className="flex flex-col items-start gap-4">
-      <h1 className="text-lg font-bold">Couldn't load students</h1>
+      <h1 className="text-lg font-bold">Couldn&apos;t load students</h1>
       <p>The database may be unavailable. Check that the DynamoDB container is running on port 8000.</p>
       {process.env.NODE_ENV === 'development' && <pre className="text-sm opacity-70">{error.message}</pre>}
       <button className="rounded border px-4 py-2" onClick={retry}>Retry</button>

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint",
     "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.ts"
   },
   "dependencies": {
@@ -25,5 +25,8 @@
     "server-only": "^0.0.1",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "daisyui": "^5.7.47"
   }
 }
