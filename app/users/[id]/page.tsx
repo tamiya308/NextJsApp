@@ -1,5 +1,9 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import UserDetails from '../../components/UserDetails';
+import ActiveCheckbox from '../../components/ActiveCheckbox';
+import ProfileIcon from '../../components/ProfileIcon';
+import styles from '../../components/users.module.css';
+import { formatDate } from '../../lib/formatDate';
 import { getStudent } from '../../lib/students';
 import { updateStudentActive } from '../actions';
 
@@ -13,16 +17,29 @@ const UserPage = async({ params }: Props) => {
   if (!student) notFound();
 
   return (
-    <UserDetails
-      id={student.StudentId}
-      name={student.FullName}
-      dob={student.DOB}
-      enrolmentDate={student.EnrolmentDate}
-      isActive={student.IsActive}
-      onActiveChange={updateStudentActive.bind(null, student.StudentId, student.EnrolmentDate)}
-      backHref="/users"
-      backLabel="Back to users"
-    />
+    <div className={`${styles.card} flex flex-col items-start gap-4`}>
+      <ProfileIcon isActive={student.IsActive} />
+      <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
+        <dt className="font-bold">ID</dt>
+        <dd>{student.StudentId}</dd>
+        <dt className="font-bold">Name</dt>
+        <dd>{student.FullName}</dd>
+        <dt className="font-bold">Date of birth</dt>
+        <dd>{formatDate(student.DOB)}</dd>
+        <dt className="font-bold">Enrolled</dt>
+        <dd>{formatDate(student.EnrolmentDate)}</dd>
+        <dt className="font-bold">Status</dt>
+        <dd>
+          <ActiveCheckbox
+            checked={student.IsActive}
+            onChange={updateStudentActive.bind(null, student.StudentId, student.EnrolmentDate)}
+          />
+        </dd>
+      </dl>
+      <Link href="/users" className="btn btn-primary">
+        &larr; Back to users
+      </Link>
+    </div>
   )
 }
 
