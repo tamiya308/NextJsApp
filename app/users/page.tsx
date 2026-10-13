@@ -14,7 +14,7 @@ const UsersPage = async() => {
       <h1 className="pb-4">Users ({new Date().toLocaleTimeString()})</h1>
       <div className="max-h-96 overflow-y-auto border">
         <table className="w-full text-left">
-          <thead className="sticky top-0 bg-[rgb(var(--background-start-rgb))]">
+          <thead className="sticky top-0 z-10 bg-[rgb(var(--background-start-rgb))]">
             <tr className="border-b">
               <th className="px-2 py-1 pr-6">ID</th>
               <th className="py-1 pr-6">Name</th>
@@ -25,10 +25,11 @@ const UsersPage = async() => {
           </thead>
           <tbody>
             {students.map((student) => (
-              <tr key={`${student.StudentId}#${student.EnrolmentDate}`}>
+              <tr key={`${student.StudentId}#${student.EnrolmentDate}`} className="group relative hover:bg-gray-500/10">
                 <td className="px-2 py-1 pr-6">{student.StudentId}</td>
                 <td className="py-1 pr-6">
-                  <Link href={`/users/${student.StudentId}`} className="hover:underline">{student.FullName}</Link>
+                  {/* after: overlay stretches the link over the whole row (tr is relative) */}
+                  <Link href={`/users/${student.StudentId}`} className="group-hover:underline after:absolute after:inset-0">{student.FullName}</Link>
                 </td>
                 <td className="py-1 pr-6">{formatDate(student.DOB)}</td>
                 <td className="py-1 pr-6">{formatDate(student.EnrolmentDate)}</td>
