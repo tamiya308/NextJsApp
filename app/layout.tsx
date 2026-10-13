@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import AuthGate from './components/AuthGate'
+import LogoutButton from './components/LogoutButton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,32 +20,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex min-h-screen flex-col`}>
-        <header className="flex items-center gap-4 border-b p-4">
-          <h1 className="text-xl font-bold">Next App: <span>{new Date().toLocaleTimeString()}</span></h1>
-          <input type="text" className="rounded border px-2 py-1" />
-        </header>
+        <AuthGate>
+          <header className="flex items-center gap-4 border-b p-4">
+            <h1 className="text-xl font-bold">Next App: <span>{new Date().toLocaleTimeString()}</span></h1>
+            <input type="text" className="rounded border px-2 py-1" />
+            <LogoutButton />
+          </header>
 
-        <div className="flex flex-1">
-          <nav className="w-48 border-r p-4">
-            <ul className="space-y-2">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/users">Users</Link>
-              </li>
-              <li>
-                <Link href="/usersOld">Users Old</Link>
-              </li>
-            </ul>
-          </nav>
+          <div className="flex flex-1">
+            <nav className="w-48 border-r p-4">
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/users">Users</Link>
+                </li>
+                <li>
+                  <Link href="/usersOld">Users Old</Link>
+                </li>
+              </ul>
+            </nav>
 
-          <main className="flex-1 p-4">{children}</main>
-        </div>
+            <main className="flex-1 p-4">{children}</main>
+          </div>
 
-        <footer className="border-t p-4 text-sm">
-          &copy; {new Date().getFullYear()} Next App
-        </footer>
+          <footer className="border-t p-4 text-sm">
+            &copy; {new Date().getFullYear()} Next App
+          </footer>
+        </AuthGate>
       </body>
     </html>
   )
