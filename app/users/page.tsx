@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { connection } from 'next/server';
-import RefreshButton from './RefreshButton';
+import RefreshButton from '../components/RefreshButton';
 import { getStudents } from '../lib/students';
 import { formatDate } from '../lib/formatDate';
 

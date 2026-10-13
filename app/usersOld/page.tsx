@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import RefreshButton from './RefreshButton';
+import RefreshButton from '../components/RefreshButton';
 
 interface User {
   id:number;

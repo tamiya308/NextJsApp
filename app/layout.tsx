@@ -39,6 +39,9 @@ export default function RootLayout({
                 <li>
                   <Link href="/usersOld">Users Old</Link>
                 </li>
+                <li>
+                  <Link href="/admin">Admin</Link>
+                </li>
               </ul>
             </nav>
 
