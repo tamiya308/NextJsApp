@@ -1,6 +1,6 @@
 import 'server-only';
-import { DynamoDBClient, ResourceNotFoundException } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, QueryCommand, ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
+import { ConditionalCheckFailedException, DynamoDBClient, ResourceNotFoundException } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient, PutCommand, QueryCommand, ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { setupDb } from './setupDb';
 
 export const STUDENTS_TABLE = 'Students';
@@ -68,4 +68,21 @@ export async function setStudentActive(studentId: string, enrolmentDate: string,
     ConditionExpression: 'attribute_exists(StudentId)',
     ExpressionAttributeValues: { ':isActive': isActive },
   })));
+}
+
+// Returns false if a student with this ID already exists
+export async function addStudent(student: Student): Promise<boolean> {
+  if (await getStudent(student.StudentId)) return false;
+  try {
+    await withTable(() => db.send(new PutCommand({
+      TableName: STUDENTS_TABLE,
+      Item: student,
+      // Never overwrite an existing record, even if one was added since the check above
+      ConditionExpression: 'attribute_not_exists(StudentId)',
+    })));
+    return true;
+  } catch (err) {
+    if (err instanceof ConditionalCheckFailedException) return false;
+    throw err;
+  }
 }

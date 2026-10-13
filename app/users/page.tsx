@@ -4,7 +4,7 @@ import RefreshButton from './RefreshButton';
 import { getStudents } from '../lib/students';
 import { formatDate } from '../lib/formatDate';
 
-const UsersPage = async() => {
+const ListUsers = async() => {
   // Render on every request; without this Next.js would build the list once at build time
   await connection();
   const students = await getStudents();
@@ -44,4 +44,4 @@ const UsersPage = async() => {
   )
 }
 
-export default UsersPage
+export default ListUsers
